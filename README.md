@@ -23,7 +23,7 @@ _What's inside PineVox?_
 
 _How to flash PineVox with OpenSBI and U-Boot Bootloader?_
 
-Let's try flashing...
+Let's try flashing PineVox with BLDevCube...
 
 - [__m0_lowload__](https://github.com/openbouffalo/OBLFR/tree/master/apps/m0_lowload) for M0 Wireless Core (32-bit):
 
@@ -50,5 +50,15 @@ We have a problem...
 - We need a way to load NuttX Image into RAM at 0x5020_0000
 
 - Maybe the M0 Wireless Core (32-bit) will load NuttX Image into RAM? Over WiFi?
+
+_Why use U-Boot Bootloader? Why not flash NuttX directly as Firmware?_
+
+- U-Boot might be simpler for now? Today NuttX boots in RISC-V Supervisor Mode, so we don't need to tweak it to boot in Machine Mode.
+
+- Isolate the Toolchain: BL606P needs a special T-Head C906 Toolchain plus Bouffalo Lab SDK. It's better to isolate OpenSBI + U-Boot, compile them with the special toolchain.
+
+  We'll keep them separate from NuttX, which compiles with the popular GCC Toolchain.
+
+- Support Direct Firmware Update (DFU): In future we might support DFU to upgrade the NuttX Image wirelessly. We'll implement DFU with U-Boot (or something similar).
 
 TODO: Load NuttX Image into RAM
