@@ -13,13 +13,33 @@ BL606P looks something like this (minus the Low-Power Core)...
 
 _What's inside PineVox?_
 
+According to the PineVox Schematic...
+
 - __Mainboard PCB__ contains Bouffalo Lab BL606P SoC, Serial Console, Flash Memory, USB-C Port, Power Mgmt
 
 - __Sideboard PCB__ contains Directional Microphone, Buttons, LEDs
 
 - Connected by a 20-pin Ribbon Cable
 
+USB-C Port connects to a Special USB Cable for PineVox that exposes (pic below)...
+
+- __Boot Switch__ (GPIO 29)
+
+  1: Boot from UART (Flashing Mode?)
+
+  0: Boot from Flash
+
+- __UART TX / RX__ (GPIO 20 / 21)
+
+  (We assume it's for Flashing via BLDevCube)
+
+- __USB Data__ (+ve and -ve)
+
+  (For USB Peripherals? Maybe DFU?)
+
 (Schematics will be published soon by PINE64)
+
+![PineVox USB Cable](https://lupyuen.github.io/images/pinevox-usb.jpg)
 
 _How to flash PineVox with OpenSBI and U-Boot Bootloader?_
 
